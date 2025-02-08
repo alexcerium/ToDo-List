@@ -6,12 +6,23 @@
 //
 
 import SwiftUI
+import Foundation
+
+import SwiftUI
 
 @main
-struct ToDo_ListApp: App {
+struct MyToDoApp: App {
+    @State private var showSplash = true  // Сначала показываем Splash
+
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            if showSplash {
+                // Экран Splash (анимированный)
+                SplashView(isActive: $showSplash)
+            } else {
+                // После Splash переходим к VIPER-модулю через TaskRouter
+                TaskRouter.createContentView()
+            }
         }
     }
 }
